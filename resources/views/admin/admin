@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>App</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/fullcalendar.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/jquery.gritter.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body>
+
+<!--Header-part-->
+
+<nav class="navbar navbar-expand-md  navbar-dark bg-dark ">
+
+    <ul class="navbar-nav navbar-right">
+    
+        <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+     
+    </ul> 
+     
+
+  </nav>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home "></i> Dashboard</a>
+  <ul>
+    <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+
+     <li class="submenu"> <a href="#"><i class="fas fa-shopping-basket"></i><span>Category</span></a>
+      <ul>
+        <li> <a href="/category"><i class="fas fa-plus"></i><span>view Category</span></a> </li>
+     <li> <a href="/category/create"><i class="fas fa-plus"></i><span>Create Category</span></a> </li>
+     
+      
+   
+     </ul>
+     </li>
+
+     <li class="submenu"> <a href="#"><i class="fas fa-shopping-basket"></i><span>Sub_Category</span></a>
+      <ul>
+        <li> <a href="/sub_category"><i class="fas fa-plus"></i><span>view Sub_Category</span></a> </li>
+     <li> <a href="/sub_category/create"><i class="fas fa-plus"></i><span>Create Sub_Category</span></a> </li></ul>
+     </li>
+
+      <li class="submenu"> <a href="#"><i class="fas fa-shopping-basket"></i><span>Product</span></a>
+      <ul>
+        <li> <a href="/product"><i class="fas fa-plus"></i><span>view product</span></a> </li>
+     <li> <a href="/product/create"><i class="fas fa-plus"></i><span>Create product</span></a> </li>
+ </ul>
+     </li>
+
+<li class="submenu"> <a href="#"><i class="fas fa-shopping-basket"></i><span>Order</span></a>
+      <ul>
+        <li> <a href="{{route('user.admin_view_req')}}"><i class="fas fa-plus"></i><span>special Order
+        </span></a> </li>
+     <li> <a href="/order"><i class="fas fa-plus"></i><span>Order list</span></a></li>
+     <li> <a href="/order_product"><i class="fas fa-plus"></i><span>Order  product list</span></a></li>
+
+ </ul>
+     </li>
+
+    <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Transection</span></a></li>
+    <li class="submenu"> <a href="#"><i class="fas fa-shopping-basket"></i><span>User info</span> </a>
+      <ul>
+        <li><a href="form-common.html">register user</a></li>
+        <li><a href="form-validation.html">Order list</a></li>
+      </ul>
+    </li>
+   
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+<!--breadcrumbs-->
+
+<!--End-breadcrumbs-->
+
+<!--Action boxes-->
+
+  <div class="container-fluid">
+    <div class="quick-actions_homepage card ">
+      <ul class="quick-actions text-center ">
+<div class="row container text-center">
+ <li class="col-md-3 bg_lo mr-5 mt-2  mx-5 "> <a href="#"> <i class="icon-th"  style="height: 55px;"></i> Today's delivery</a> </li>
+        <li class="col-md-3 bg_lg mr-5 mt-2 "> <a href="#"> <i class="icon-dashboard"  style="height: 55px;"></i> Order</a> </li>
+       
+       <li class="col-md-3 bg_lb mr-5 mt-2" > <a href="#"> <i class="icon-signal" style=" height: 55px;"></i> Delivered order</a> </li>
+       
+      </div>
+      </ul>
+    </div>
+<!--End-Action boxes-->    
+
+<!--Chart-box-->    
+    
+<!--End-Chart-box--> 
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+
+<!--end-Footer-part-->
+
+<script src="js/excanvas.min.js"></script> 
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.flot.min.js"></script> 
+<script src="js/jquery.flot.resize.min.js"></script> 
+<script src="js/jquery.peity.min.js"></script> 
+<script src="js/fullcalendar.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.dashboard.js"></script> 
+<script src="js/jquery.gritter.min.js"></script> 
+<script src="js/matrix.interface.js"></script> 
+<script src="js/matrix.chat.js"></script> 
+<script src="js/jquery.validate.js"></script> 
+<script src="js/matrix.form_validation.js"></script> 
+<script src="js/jquery.wizard.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/matrix.popover.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.tables.js"></script> 
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</body>
+</html>
