@@ -43,8 +43,8 @@
 <td>{{ $data->quantity}}</td>
 
 <td><img src="{{'/storage/image/'.$data->img}}" height="40" width="40" /></td>
-<td>{{ $data->address}}</td>
-<td>{{ $data->phone_no}}</td>
+<td>{{ $data->users->address}}</td>
+<td>{{ $data->users->phone_no}}</td>
 <td>{{ $data->price}}</td>
 <td>{{ $data->confirmation}}</td>
 <td>{{$data->created_at->format('d M Y ') }}</td>

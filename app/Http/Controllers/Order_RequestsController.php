@@ -36,9 +36,13 @@ class Order_RequestsController extends Controller
      */
     public function create()
     {
-         
-        return view('user.create');
+       $uid=auth()->user()->id;
+      // 
+          $users = User::find($uid);
+          // dd($users );
+        return view('user.create',compact('users'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -49,14 +53,13 @@ class Order_RequestsController extends Controller
     public function store(Request $request)
     {
            $this->validate($request,[
-            'name' =>['required','min:3'],
-            'img' =>'image|nullable',
-            'quantity'=>['required'],
-            'address' =>['required','min:4'],
-            'phone_no' =>['required','min:11'],
+            'name' =>['required','min:3','max:50','string'],
+            'img' =>'image',
+            'quantity'=>['required','integer'],
             'payment'=>['required'],
-            'price'=>['required'],
-          
+            'price'=>['required','integer','min:2'],
+
+         
         ]);
 
            
@@ -71,9 +74,8 @@ class Order_RequestsController extends Controller
          
                 $datas = new Order_Request;
                 $datas->name=$request->input('name');
-                $datas->phone_no=$request->input('phone_no');
                 $datas->quantity=$request->input('quantity');
-                $datas->address=$request->input('address');
+                
                 $datas->payment=$request->input('payment');
                 $datas->price=$request->input('price');
                 $datas->user_id=auth()->user()->id;
@@ -83,6 +85,11 @@ class Order_RequestsController extends Controller
                 }
              
                $datas->save();
+               $uid=auth()->user()->id;
+               $u = User::find($uid);
+               $u->address=$request->input('address');
+               $u->phone_no=$request->input('phone_no');
+               $u->save();
                return redirect('/homepage');
             }
 

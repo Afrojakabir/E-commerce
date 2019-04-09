@@ -15,7 +15,7 @@
    <div class="col-md-2 "  >
    </div>
   <div class="col-md-8 card" style=" margin-top: 30px;" >
-<div class ="div1 card-body "  >
+<div class ="div1 card-body ">
 
 <form method="POST" action="/user/{{ $data->id }}"  >
                         @csrf
@@ -50,7 +50,7 @@
 <div>
 	<button type="submit" class="btn btn-success w-100" style="width: 515px;">Update</button>
 </div>
-@include('errors')
+
 </form>
 </div>
 </div>

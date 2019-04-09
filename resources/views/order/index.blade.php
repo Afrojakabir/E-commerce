@@ -33,7 +33,7 @@ $(document).ready(function() {
   <thead>
     <tr>
      <th scope="col">Order ID</th>
-     <th scope="col">User Id</th>
+     <th scope="col">User Name</th>
      <th scope="col">User Address</th>
      <th scope="col">User Mobile no.</th>
      <th scope="col">Payment Type</th>
@@ -49,9 +49,9 @@ $(document).ready(function() {
 
     <tr>
       <td>{{ $data->id }}</td>
-      <td >{{ $data->user_id}}</td>
-      <td>{{ $data->address}}</td>
-      <td>{{ $data->phone_no}}</td>
+      <td >{{ $data->users->name}}</td>
+      <td>{{ $data->users->address}}</td>
+      <td>{{ $data->users->phone_no}}</td>
       <td>{{ $data->payment}}</td>
       <td>{{ $data->total_price}}</td>
       <td>{{ $data->status}}</td>
@@ -61,7 +61,7 @@ $(document).ready(function() {
         <div>
           <button type="submit" class="btn btn-success" value="Delivered" name="status">Done</button>
         </div>
-          @include('errors')
+         
         </form></td>
       
       <td>
@@ -71,7 +71,7 @@ $(document).ready(function() {
         <div>
           <button type="submit" class="btn btn-danger" >Delete</button>
         </div>
-          @include('errors')
+         
         </form>
       </td>
         <td>

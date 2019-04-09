@@ -23,10 +23,10 @@
                     <div class="card-body">
                       <h5 class="card-title">{{$baby->name }}</h5>
                         <p class="card-text">৳{{$baby->price }}/=</p>   
-                         
-                           
-                        
+                        <p ><b>Availability:</b> @if($baby->quantity > 0) In Stock @else Out Of stock @endif</p>
+                         @if($baby->quantity > 0)
                         <a href="homepage/{{$baby->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+                        @endif
                       </div>
                     </div>
                 </div>

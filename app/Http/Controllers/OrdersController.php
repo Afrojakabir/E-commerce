@@ -8,6 +8,8 @@ use App\Product;
 use App\Order_Product;
 use App\User;
 use PDF;
+use DB;
+use Carbon\Carbon;
 
 class OrdersController extends Controller
 {
@@ -21,12 +23,18 @@ class OrdersController extends Controller
        // $datas =Order::all();('idPersona', $id)->get()
           //$products =Product::all();
 
-
-   $datas =Order::with('users')->get();
+    $datas =Order::with('users')->get();
    
- //dd($datas);
-
+     //dd($datas);
+  /*$datas = DB::table('orders')
+                ->join('users', 'orders.user_id', '=' , 'users.id')
+                ->select('*')
+                ->get();*/
+      
         return view('order.index',compact('datas'));
+                // dd($data);
+
+
     }
 
     /**
@@ -84,7 +92,7 @@ class OrdersController extends Controller
 
     public function order_pdf(){
 
-      $datas = Order::all();
+      $datas = Order::where('created_at', '>=', Carbon::now()->startOfMonth())->get();
 
       $pdf = PDF::loadView('order.pdf1', compact('datas'));
     
@@ -125,7 +133,7 @@ class OrdersController extends Controller
     {
 
         $datas =Order::findorFail($id)->order_products()->get();
-       
+     //  dd( $datas);
         return view('order.vieworder',compact('datas'));
     }
 

@@ -43,7 +43,7 @@ Route::get('/electronic',[
 	'as'=>'homepage.electronicindex']);
 
 
-
+ Route::get('autocomplete', 'HomePagesController@search');
 
 
 Route::get('/checkout',[
@@ -66,6 +66,10 @@ Route::get('/downloadPDF/pdf',[
 Route::get('/order_pro/pdf',[
 	'uses'=>'OrdersController@downloadPDF',
 	'as'=>'order.pdf']);
+Route::get('/monthly/pdf',[
+	'uses'=>'AdminController@downloadPDF',
+	'as'=>'admin.pdf']);
+
 
 Route::get('/order_pdf/pdf1',[
 	'uses'=>'OrdersController@order_pdf',
@@ -80,9 +84,9 @@ Route::get('/user/pdf',[
 
 
 Route::resource('/user', 'Order_RequestsController')->middleware('auth');
-Route::resource('/order', 'OrdersController')->middleware('auth');
-
-
+ Route::resource('/order', 'OrdersController')->middleware('auth');
+//hhjg
+//Route::resource('/orderindex', 'OrdersController@orderindex')->middleware('auth');
 Route::get('/order_product',[
 	'uses'=>'OrdersController@order_product',
 	'as'=>'order.order_product'])->middleware('auth');
@@ -116,7 +120,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/userS', 'UsersController');
+Route::resource('/userupdate', 'UsersController')->middleware('auth');
+//Route::resource('/deleteUser/{id}', 'UsersController@deleteUser')->middleware('auth');
 
 Route::get('/userlist',[
 	'uses'=>'UsersController@listindex',

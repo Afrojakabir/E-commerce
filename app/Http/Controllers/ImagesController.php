@@ -38,7 +38,7 @@ class ImagesController extends Controller
     {
         $this->validate($request,[
            
-            'img' =>'image',
+            'img' =>'image|required',
             
            
           

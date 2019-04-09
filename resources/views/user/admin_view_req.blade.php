@@ -29,7 +29,7 @@ $(document).ready(function() {
   <thead>
     <tr>
     
-      <th scope="col">User id</th>
+      <th scope="col">User Name</th>
       <th scope="col">Product name</th>
       <th scope="col">Product Quantity</th>
       <th scope="col">Product image</th>
@@ -47,13 +47,13 @@ $(document).ready(function() {
    @foreach($datas as  $data)
 <tr>
  
-<td>{{ $data->user_id }}</td>
+<td>{{ $data->users->name}}</td>
 <td>{{ $data->name }}</td>
 <td>{{ $data->quantity}}</td>
 
 <td><img src="{{'/storage/image/'.$data->img}}" height="40" width="40" /></td>
-<td>{{ $data->address}}</td>
-<td>{{ $data->phone_no}}</td>
+<td>{{ $data->users->address}}</td>
+<td>{{ $data->users->phone_no}}</td>
 <td>{{ $data->price}}</td>
 <td>{{ $data->status}}</td>
 <td>{{ $data->confirmation}}</td>

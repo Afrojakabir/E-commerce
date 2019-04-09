@@ -8,6 +8,9 @@ use App\Order_Product;
 use App\Product;
 use App\Order_Request;
 use Auth;
+use Carbon\Carbon;
+use PDF;
+
 class AdminController extends Controller
 {
     /**
@@ -23,15 +26,28 @@ class AdminController extends Controller
         if(Auth::user()->role != 'admin'){
             return redirect('/homepage');
         }
+        
 
-         $totals=Order::count();
-         $product=Order_Product::count();
-         $items=Product::count();
-         $sp=Order_Request::count();
-         
+        // $totals=Order::count();
+        $totals=Order::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+         $product=Order_Product::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+         $items=Product::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+         $sp=Order_Request::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+        
 
           //$products =Product::all();
         return view('admin.index' ,compact('totals','product','items','sp'));
+    }
+
+    public function downloadPDF(){
+
+      $totals=Order::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+      $product=Order_Product::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+      $items=Product::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+      $sp=Order_Request::where('created_at', '>=', Carbon::now()->startOfMonth())->count();
+
+      $pdf = PDF::loadView('admin.pdf', compact('totals','product','items','sp'));
+      return $pdf->download('Monthly.pdf');
     }
 
     /**

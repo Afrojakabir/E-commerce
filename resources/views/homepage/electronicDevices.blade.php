@@ -21,8 +21,11 @@
                   <img src="storage/image/{{$device->img}}" height="200" width="200"  class="card-img-top">
                     <div class="card-body">
                       <h5 class="card-title">{{$device->name }}</h5>
-                        <p class="card-text">৳{{$device->price }}/=</p>   
+                        <p class="card-text">৳{{$device->price }}/=</p>
+                        <p ><b>Availability:</b> @if($device->quantity > 0) In Stock @else Out Of stock @endif</p>
+                         @if($device->quantity > 0)   
                           <a href="homepage/{{$device->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+                          @endif
                       </div>
                     </div>
                 </div>

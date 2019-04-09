@@ -11,13 +11,13 @@ class Order_Request extends Model
      protected $guarded = [];
      protected $table = 'order_requests';
      protected $fillable = [
-        'name', 'quantity','price', 'img','phone_no','address','user_id','status','confirmation','payment',
+        'name', 'quantity','price', 'img','user_id','status','confirmation','payment',
     ];
  
 
      public function users(){
 
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class , 'user_id');
 }
 
 }

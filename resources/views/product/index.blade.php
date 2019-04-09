@@ -32,8 +32,8 @@ $(document).ready(function() {
 </tbody>
   <thead>
     <tr>
-     <th scope="col">Category Id</th>
-     <th scope="col">Admin Id</th>
+     <th scope="col">Category</th>
+     <th scope="col">Admin Name</th>
      <th scope="col">Name</th>
      <th scope="col">Code</th>
      <th scope="col">Price</th>
@@ -48,8 +48,8 @@ $(document).ready(function() {
      @foreach($datas as  $data)
 
     <tr>
-      <td>{{ $data->category_id}}</td>
-      <td >{{ $data->user_id}}</td>
+      <td>{{ $data->categorys->name}}</td>
+      <td >{{ $data->users->name}}</td>
       <td>{{ $data->name}}</td>
       <td>{{ $data->code}}</td>
       <td>{{ $data->price}}</td>

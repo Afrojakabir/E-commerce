@@ -32,12 +32,15 @@
       
       <td>{{$data['item'] ['name']}}</td>
       <td>৳{{$data['item'] ['price']}}</td>
+
       <td><div class="cart-quantity">
+         @if($data['item']['quantity'] > $data['qty'])
         <form action="homepage/{{$data['id'].'_a'}}" method="POST">
           @csrf
           <input type="hidden"  name="_method" value="PATCH">
           <button type="submit" class="btn btn-outline-secondary" style="width:30px; height:30px;"><strong>+</strong></button>
         </form>
+        @endif
         <div class="mx-2"> {{$data['qty']}}</div>
 
         <form action="homepage/{{$data['id'].'_d'}}" method="POST">

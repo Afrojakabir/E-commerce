@@ -81,11 +81,11 @@
 
        Address:
       <br>
-     <input type="text" class="form-control" name="address" required><br>
+     <input type="text" class="form-control" name="address" value = "{{$users->address}} "required><br>
       <br>
-      
-      <input type="text" class="form-control" name="phone_no"  required><br>
-      
+       Phone Number:
+      <input type="text" class="form-control" name="phone_no" value = "{{$users->phone_no}}"  required><br>
+    
       <div class="form-check">
         <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="Cash" checked>
          <label class="form-check-label" for="exampleRadios1">
@@ -103,7 +103,7 @@
 </div>
 </div>
 </div>
-
+@include('errors')
     <div class="container  ">
         <div class="row">
            <div class="col-md-2 col-sm-2 "  >

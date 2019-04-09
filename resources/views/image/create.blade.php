@@ -18,6 +18,7 @@
 		Product img:<br>
 		<div class="control">
 <input type="file" name="img" id="profile-img" required>
+
 <br>
 <img src="{{'/storage/image/'}}" id="profile-img-tag" width="40px" height="40px" />
 
@@ -39,7 +40,7 @@
 </div>
 </div>
 <br>
-			<div class="row">
+@include('errors')			<div class="row">
 				<div class="col-sm-8" ><input type="submit" class="btn btn-success " style="width: 680px;" value="submit"><br></div>
 				
 		</div>

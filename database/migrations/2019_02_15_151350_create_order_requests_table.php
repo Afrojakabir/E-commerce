@@ -17,10 +17,8 @@ class CreateOrderRequestsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
-            $table->string('address');
             $table->string('status')->default('on process');
             $table->string('confirmation')->default('on process');
-            $table->integer('phone_no');
             $table->integer('quantity');
             $table->integer('price');
             $table->string('payment');

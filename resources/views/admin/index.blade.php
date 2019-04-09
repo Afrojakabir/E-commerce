@@ -10,12 +10,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-2"></div>
-      <div class="col-md-10  bg-light">
+    <div class="col-md-1"></div>
+      <div class="col-md-10 bg-light">
       	<div class="container">
 	<div class="row">
-
-	 <div class="border border-primary card col-md-3 mt-2 mb-2 ">
+<div class="card-group">
+	 <div class="border border-primary card col-md-3 mt-2 mb-2 ml-4">
   <div class="card-body ">
     <h6 class="card-title  text-secondary text-center">Total Product items</h6>
     <h1 class="card-text text-center">{{$items}}</h1>
@@ -42,8 +42,8 @@
   </div>
 </div>
 
-<div class="col-md-1"></div>
-	 <div class="border border-primary card col-md-3 mt-2 mb-2  ">
+
+	 <div class="border border-primary card col-md-3 mt-2 mb-2 ml-4">
   <div class="card-body ">
     <h6 class="card-title text-secondary text-center">Total  Special 0rder</h6>
     <h1 class="card-text text-center">{{$sp}}</h1>
@@ -53,6 +53,18 @@
 
 
 </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5"> 
+    </div>
+    <div class="col-md-2">
+       <a href="/monthly/pdf" class="btn btn-outline-primary"><i class="far fa-file-pdf"></i>Print pdf</a>
+      
+    </div>
+  </div>
+</div>
+
 </div>
     </div>
 

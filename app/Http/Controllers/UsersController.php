@@ -124,7 +124,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $sid)
+    /*public function update(Request $request, $sid)
     {
         $new = explode('_',$sid);
         $id = $new[0];
@@ -149,6 +149,14 @@ class UsersController extends Controller
         }
         
         return redirect('/cart');
+    }*/
+
+        public function update(Request $request, $id)
+    {
+         $data =User::findorFail($id);
+         $data->role=$request->input('role');
+         $data->save();
+         return redirect()->back();
     }
 
     
@@ -160,48 +168,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+
+     public function destroy($id)
     {
+           $data= new User();
+           User::findorFail($id)->delete();
+           return redirect()->back();
 
-       /* $cart=  Session::get('cart');
-        $totalQty =$cart->totalQty;
-        $totalQty -=$cart->items[$id]['qty'];
-        $totalPrice=$cart->totalPrice;
-        $totalPrice -=$cart->items[$id]['price'];
-        $cart->totalPrice = $totalPrice;
-        $cart->totalQty = $totalQty;*/
 
-        $data =Product::findorFail($id);
-         $oldCart  = Session::has('cart') ? Session::get('cart') : null;
-         $cart = new Cart($oldCart);
-            $cart->delete($data, $data->id);
-             Session::put("cart", $cart); 
-        Session::save();
-        // }
-        unset( $cart->items[$id]);
-        //dd($cart);
-        
-         $cart=  Session::get('cart');
-        $totalQty =$cart->totalQty;
-      if($totalQty == 0){
-            Session::forget('cart');
-            Session::flush();
-        }
-//dd(Session::get('cart'));
-    
-     return redirect('/cart');
-
-     /*
-
-  /* $cart->destroy($id);*/
-     /*$this->totalQty -= $this->items[$id]['qty'];
-        $this->totalPrice -=  $this->items[$id] * $this->items[$id]['qty'];
-        $this->subTotal = $this->totalPrice + $this->shippingCost;
-
-        // and remove the item
-        unset($this->items[$id]);
-
-    return redirect('/cart');*/
     }
 
 

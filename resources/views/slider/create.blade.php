@@ -38,6 +38,7 @@
 </div>
 </div>
 <br>
+@include('errors')
 			<div class="row">
 				<div class="col-sm-8" ><input type="submit" class="btn btn-success " style="width: 680px;" value="submit"><br></div>
 				

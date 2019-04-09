@@ -1,5 +1,13 @@
 @extends('layout')
 @section('links')
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 @endsection
 @section('nav')
   
@@ -7,10 +15,10 @@
 
     <form class="form-inline mx-auto  " >
 
-             <button       <i class="material-icons btn btn-outline-success my-1 my-sm-0" style="font-size:26px" type="submit">search</i>
-             </button>
-        <input class="form-control mx-auto" style="width: 350px" type="search" placeholder="Search product" aria-label="Search" required>
-     
+             <!--<button       <i class="material-icons btn btn-outline-success my-1 my-sm-0" style="font-size:26px" type="submit">search</i>
+             </button>-->
+        <input id="search" name="search" class="form-control mx-auto" style="width: 350px" type="text" placeholder="Search product" aria-label="Search" required>
+      
       <div class="dropdown show">
   <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     All
@@ -144,10 +152,14 @@
                     <div class="card-body">
                       <h6 class="card-title">{{ $data->name }}</h6>
                         <p class="card-text">৳{{ $data->price }}/=</p>   
-                         
-                           
-                        
+                        <p ><b>Availability:</b> @if($data->quantity >0) In Stock @else Out Of stock @endif</p>
+                      @if($data->quantity >0 ) 
+
                         <a href="homepage/{{ $data->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+
+                       
+                       @endif
+
                       </div>
                     </div>
                 </div>
@@ -181,10 +193,11 @@
                     <div class="card-body">
                       <h6 class="card-title">{{ $men->name }}</h6>
                         <p class="card-text">৳{{ $men->price }}/=</p>   
+                        <p ><b>Availability:</b> @if($men->quantity > 0) In Stock @else Out Of stock @endif</p>
                          
-                           
-                        
+                        @if($men->quantity > 0)
                         <a href="homepage/{{ $men->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+                        @endif
                       </div>
                     </div>
                 </div>
@@ -219,10 +232,10 @@
                     <div class="card-body">
                       <h5 class="card-title">{{$baby->name }}</h5>
                         <p class="card-text">৳{{$baby->price }}/=</p>   
-                         
-                           
-                        
+                         <p ><b>Availability:</b> @if($baby->quantity > 0) In Stock @else Out Of stock @endif</p>
+                         @if($baby->quantity > 0)
                         <a href="homepage/{{$baby->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+                        @endif
                       </div>
                     </div>
                 </div>
@@ -257,10 +270,10 @@
                     <div class="card-body">
                       <h5 class="card-title">{{$device->name }}</h5>
                         <p class="card-text">৳{{$device->price }}/=</p>   
-                         
-                           
-                        
-                        <a href="homepage/{{$device->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+                        <p ><b>Availability:</b> @if($device->quantity > 0) In Stock @else Out Of stock @endif</p>
+                         @if($device->quantity > 0) 
+                         <a href="homepage/{{$device->id}}" class="btn btn-primary stretched-link mx-auto w-100">Add to cart</a>
+                         @endif
                       </div>
                     </div>
                 </div>
@@ -278,6 +291,32 @@
 </div>
 </div>
 </div>
+<script>
+ $(document).ready(function() {
+    $( "#search" ).autocomplete({
+ 
+        source: function(request, response) {
+            $.ajax({
+            url: "{{url('autocomplete')}}",
+            data: {
+                    term : request.term
+             },
+            dataType: "json",
+            success: function(data){
+               var resp = $.map(data,function(obj){
+                    //console.log(obj.city_name);
+                    return obj.name;
+               }); 
+ 
+               response(resp);
+            }
+        });
+    },
+    minLength: 1
+ });
+});
+ 
+</script>   
  @endsection  
 @section('footer')
 @endsection

@@ -13,6 +13,8 @@ use App\Order;
 use Session;
 use App\Order_Product;
 use App\Image;
+use App\Category;
+
 
 class HomePagesController extends Controller
 {
@@ -31,6 +33,16 @@ class HomePagesController extends Controller
       $devices = Product::where('category_id', 4)->get();
         return view('homepage.index',compact('datas','mens','babys','devices','image'));
 //compact('users','projects','foods')
+
+    }
+
+        public function search(Request $request){
+         $search = $request->get('term');
+      
+          $result = Product::where('name', 'LIKE', '%'. $search. '%')->get();
+          // return response()->compact('result');
+          //dd($result);
+          return response()->json($result);
 
     }
 
@@ -74,6 +86,7 @@ class HomePagesController extends Controller
      public function getCart()
 
     {
+        
 
          if (!Session::has('cart')) {
             return view('cart.index');
@@ -86,7 +99,10 @@ class HomePagesController extends Controller
 
  public function GetCheckout()
     { 
-          
+           $uid=auth()->user()->id;
+      // 
+          $users = User::find($uid);
+          // dd($users );
           if (!Session::has('cart')) {
             return view('cart.index');
          }
@@ -96,7 +112,7 @@ class HomePagesController extends Controller
 
       
           
-      return view('cart.checkout',['datas'=>$cart->items,'total'=>$total]);
+      return view('cart.checkout',['datas'=>$cart->items,'total'=>$total],compact('users'));
     }
 
       /*  public function GetCheckout(Request $request,$id)
@@ -150,16 +166,14 @@ class HomePagesController extends Controller
     public function postCheckout(Request $request)
 
     {
-         $data = Product::all();
+         
         
          if (!Session::has('cart')) {
             return view('cart.index');
         }
 
         $this->validate($request,[
-            'address' =>['required','min:3'],
             
-            'phone_no' =>['required','min:11'],
            
           'payment' =>['required'],
         ]);
@@ -167,12 +181,9 @@ class HomePagesController extends Controller
            $cart = new Cart($oldCart);
 
             $datas = new Order;
-             $datas->address=$request->input('address');
-            $datas->phone_no=$request->input('phone_no');
             $datas->payment=$request->input('payment');
             $datas->user_id=auth()->user()->id;
-             $datas->total_price=$cart->totalPrice +75;
-
+            $datas->total_price=$cart->totalPrice +75;
             $datas->save();
 
 
@@ -180,9 +191,11 @@ class HomePagesController extends Controller
             if($datas){
            $carts  = Session::get('cart');
          
-          
+           
            foreach($carts->items as $cart){
-             $data = Product::all();
+          //  $id =
+            // $data =Product::find($id);
+           
              $order = new Order_Product;
              $order->product_id=$cart['item']['id'];
              $order->order_id=$datas->id;
@@ -190,11 +203,25 @@ class HomePagesController extends Controller
              $order->quantity=$cart['qty'];
              $order->price=$cart['item']['price'];
              $order->img=$cart['item']['img'];
-           
-
              $order->save();
 
+          //$data
+  //dd($data);
+             $id =$cart['item']['id'];
+             $data =Product::find($id);
+             $data->quantity=$cart['item']['quantity']-$cart['qty'];
+             $data->save(); 
+           $uid=auth()->user()->id;
+           $u = User::find($uid);
+           $u->address=$request->input('address');
+           $u->phone_no=$request->input('phone_no');
+           $u->save();
+
+        
+
              }
+
+
             }
 
 
@@ -218,6 +245,7 @@ class HomePagesController extends Controller
 
 
         $data =Product::findorFail($id);
+       // dd($data);
         $oldCart  = Session::has('cart') ? Session::get('cart') : null;
         // if($action !== null){
             $cart = new Cart($oldCart);
@@ -240,7 +268,7 @@ class HomePagesController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -273,7 +301,7 @@ class HomePagesController extends Controller
             }
             
         }
-        
+
         return redirect('/cart');
     }
 

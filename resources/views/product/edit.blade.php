@@ -4,7 +4,7 @@
 @section('nav')
 
 <div class="container">
-  <h1 class="text-center">Modifying  sub Catatory</h1>
+  <h1 class="text-center">Edit Product</h1>
 </div>
 <div class="container  " >
 	<div class="row" >
@@ -42,17 +42,16 @@
 		<div class="control">
 		<input type="text" class="form-control" name="code" value="{{$data->code}}" placeholder="code" required><br>
 	</div>
-</div>
-			
+</div>	
 	 <div class="field"> 
-		Product img:<br>
+		Product image:<br>
 		<div class="control">
 <!-- 			<img src="storage/image/{{$data->img}}" height="40" width="40" />
 
  -->
-<input type="file" name="img" id="profile-img">
+<input type="file" name="img" id="profile-img" value="{{$data->img}}" >
 <br>
-<img src="{{'/storage/image/'.$data->img}}" id="profile-img-tag" width="40px" height="40px" />
+<img src="{{'/storage/image/'.$data->img}}" id="profile-img-tag" width="40px" height="40px"value="{{$data->img}}"  />
 
 <script type="text/javascript">
     function readURL(input) {
@@ -76,12 +75,14 @@
 	</div>
 </div>		
 			
-			
+
+@include('errors')			
 
 <div>
+
 	<button type="submit" class="btn btn-success w-100" style="width: 515px;">Update</button>
 </div>
-@include('errors')
+
 </form>
 </div>
 </div>

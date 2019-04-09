@@ -29,7 +29,7 @@ class CartController extends Controller
     public function getAddToCart(Request $request, $id)
     {
 
-        dd('hh');
+      //  dd('hh');
          $data =Product::findorFail($id);
          $oldCart  = Session::has('cart') ? Session::get('cart') : null;
 

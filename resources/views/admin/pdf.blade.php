@@ -44,7 +44,7 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-                <h3 class="panel-title text-center"><strong>Order Summary</strong></h3>
+                <h3 class="panel-title text-center"><strong>Monthly report</strong></h3>
           </div>
           <br>
           <br>
@@ -56,33 +56,25 @@
              <table class="table container">
         <thead>
           <tr>
-            <th scope="col">Order Id</th>
-            <th scope="col">User Name</th>
-            <th scope="col">Product name</th>
-            <th scope="col">Product Quantity</th>
-            ]
-            <th scope="col">Address</th>
-            <th scope="col">Mobile No</th>
-            <th scope="col">Price</th>
-            <th scope="col">Approval</th>
+            <th scope="col">Total Order</th>
+            <th scope="col">Product Sold</th>
+            <th scope="col">New Product</th>
+            <th scope="col">Order Request</th>
+
+           
+          </tr>
           
-           
-          </tr>
-           @foreach($datas as  $data)
           <tr>
-            <td>{{ $data->id }}</td>
-            <td>{{ $data->users->name }}</td>
-            <td>{{ $data->name }}</td>
-            <td>{{ $data->quantity}}</td>
-            <td>{{ $data->users->address}}</td>
-            <td>{{ $data->users->phone_no}}</td>
-            <td>{{ $data->price}}</td>
-            <td>{{ $data->status}}</td>
+            <td>{{ $totals}}</td>
+            <td>{{ $product }}</td>
+            <td>{{  $items }}</td>
+            <td>{{ $sp}}</td>
+
            
            
            
           </tr>
-                @endforeach
+              
         </thead>
       </table>
             </div>

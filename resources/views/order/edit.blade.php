@@ -28,7 +28,7 @@
   <br>
 	<button type="submit" class="btn btn-success w-100" style="width: 515px;">approval</button>
 </div>
-@include('errors')
+  
 </form>
 </div>
 </div>

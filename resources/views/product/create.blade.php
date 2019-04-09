@@ -14,13 +14,14 @@
 <form method="POST" action="/product" enctype="multipart/form-data" >
                         @csrf
 			Product Name:<br>
-			<input type="text" class="form-control" name="name" required><br>
+			<input type="text" class="form-control" name="name" value="{{ old('name') }}" required><br>
+
 			Price:<br>
-			<input type="text" class="form-control" name="price" required><br>
+			<input type="text" class="form-control" name="price" value="{{ old('price') }}" required><br>
 			
 			Catatory:<br>
 			
-			<select class="form-control form-control-sm inputval"name="category_id" >
+			<select class="form-control form-control-sm inputval"name="category_id" value="{{ old('category_id') }}" required >
 
 	@foreach($datas as  $data)
 
@@ -29,9 +30,9 @@
 
 </select>
 			Quantity:<br>
-			<input type="text" class="form-control" name="quantity" required><br>
+			<input type="text" class="form-control" name="quantity" value="{{ old('quantity') }}"required><br>
 			Product code:<br>
-			<input type="text" class="form-control" name="code" required><br>
+			<input type="text" class="form-control" name="code" value="{{ old('code') }}" required><br>
 			<div class="field"> 
 		Product img:<br>
 		<div class="control">
@@ -57,6 +58,7 @@
 </div>
 </div>
 <br>
+@include('errors')	
 			<div class="row">
 				<div class="col-sm-8" ><input type="submit" class="btn btn-success " style="width: 680px;" value="submit"><br></div>
 				

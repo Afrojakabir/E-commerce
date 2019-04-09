@@ -15,10 +15,12 @@
                     <form method="POST" action="/category">
                         @csrf
 						Catatory Name:<br>
-						<input type="text" class="form-control" name="name" value="{{ old('title') }}" required><br>
-						<div class="row">
+						<input type="text" class="form-control" name="name" value="{{ old('name') }}"><br>
+					@include('errors')	
+			<div class="row">
 						<div class="col-sm-8" ><input type="submit" class="btn btn-info" value="Save"><br></div>
 							</div>
+
 					</form>
 				</div>
 			</div>

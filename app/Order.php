@@ -11,13 +11,14 @@ class Order extends Model
      protected $guarded = [];
     protected $table = 'orders';
   protected $fillable = [
-        'user_id', 'phone_no','address','payment','total_price','status',
+        'user_id','payment','total_price','status',
     ];
 
 
      public function users(){
 
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class, 'user_id');
+        // return $this->belongsTo(User::class);
        }
        
 

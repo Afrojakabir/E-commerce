@@ -58,10 +58,10 @@ class ProductsController extends Controller
     {
             $this->validate($request,[
             'name' =>['required','min:3'],
-            'img' =>'image|nullable',
-            'price' =>['required'],
-            'quantity'=>['required'],
-            'code' =>['required'],
+            'img' =>'image|required',
+            'price' =>['required','integer','min:2'],
+            'quantity'=>['required','integer'],
+            'code' =>['required','min:3'],
             'category_id' =>['required'],
           
         ]);
@@ -83,11 +83,12 @@ class ProductsController extends Controller
             $datas = new Product;
             $datas->name=$request->input('name');
             $datas->price=$request->input('price');
-             $datas->quantity=$request->input('quantity');
-              $datas->code=$request->input('code');
-               $datas->category_id=$request->input('category_id');
-                $datas->user_id=auth()->user()->id;
-if($request->hasFile('img')){
+            $datas->quantity=$request->input('quantity');
+            $datas->code=$request->input('code');
+            $datas->category_id=$request->input('category_id');
+            $datas->user_id=auth()->user()->id;
+            
+            if($request->hasFile('img')){
          
              $datas->img = $fileNameToStore;
          }
@@ -141,11 +142,12 @@ if($request->hasFile('img')){
          //$data->update(request(['name','price', 'quantity','code', 'img']));
 
    $this->validate($request,[
-            'name' =>['required','min:3'],
-            'img' =>'image|nullable',
-            'price' =>['required'],
-            'quantity'=>['required'],
-            'code' =>['required'],
+  
+            'name' =>['required','min:3','string'],
+            'img' =>'image',
+            'price' =>['required','integer','min:2'],
+            'quantity'=>['required','integer'],
+            'code' =>['required','min:3','string'],
             
         ]);
         if($request->hasFile('img')){

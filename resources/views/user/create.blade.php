@@ -16,20 +16,20 @@
 <form method="POST" action="/user" enctype="multipart/form-data" >
                         @csrf
        Product Name:<br>
-      <input type="text" class="form-control" name="name" required><br>
+      <input type="text" class="form-control" name="name" value="{{old('name')}}" required><br>
      
       Quantity:<br>
-      <input type="text" class="form-control" name="quantity" required><br>
+      <input type="text" class="form-control" name="quantity" value="{{old('quantity')}}" required><br>
 
       Max Price:<br>
     
-      <input type="text" class="form-control" name="price" placeholder="Total price" required><br>
+      <input type="text" class="form-control" name="price" placeholder="Total price" value="{{old('price')}}" required><br>
   
 			
 			<div class="field"> 
-		Product img:<br>
+		Product image:<br>
 
-<input type="file" name="img" id="profile-img" required>
+<input type="file" name="img" id="profile-img" value="{{old('img')}}" required>
 <br>
 <img src="{{'/storage/image/'}}"id="profile-img-tag" width="40px" height="40px" />
 
@@ -52,13 +52,12 @@
 
             
 
-      Mobile no:<br>
-      <input type="text" class="form-control" name="phone_no"  required><br>
-       
-      Address:
+       Address:
       <br>
-     <input type="text" class="form-control" name="address" required><br>
+     <input type="text" class="form-control" name="address" value = "{{$users->address}} "required><br>
       <br>
+       Phone Number:
+      <input type="text" class="form-control" name="phone_no" value = "{{$users->phone_no}}"  required><br>
      
        <div class="form-check">
         <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="Cash" checked>
@@ -75,7 +74,7 @@
       <div class="col-sm-8" ><input type="submit" class="btn btn-success " style="width: 670px;" value="Confirm">
       </div>
 
-  	
+  	@include('errors')
   </form>
 </div>
 </div>

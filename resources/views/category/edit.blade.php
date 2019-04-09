@@ -21,7 +21,8 @@
 	
 		Catatory Name:<br>
 		<div class="control">
-		<input type="text" class="form-control" name="name" value="{{$data->name}}" placeholder="Catatory name" required><br>
+		<input type="text" class="form-control" name="name" value="{{$data->name}}"  placeholder="Catatory name" required><br>
+@include('errors')	
 	</div>
 </div>
 
